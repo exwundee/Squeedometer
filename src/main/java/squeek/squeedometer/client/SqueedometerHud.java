@@ -138,7 +138,7 @@ public class SqueedometerHud {
 
         // need it for traveling on private server, thanks babe <3
         // np, babe <3
-        // im not schizo
+        // im not schizo :)
         if (client.player.getWorld().getRegistryKey().equals(World.NETHER)
                 && SpeedCalculator.metersPerSecond(currentSpeed) >= 8.5
                 && client.getCameraEntity().getPos().getY() >= 127

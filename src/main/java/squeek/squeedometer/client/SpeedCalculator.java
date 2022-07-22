@@ -15,7 +15,7 @@ public class SpeedCalculator {
         return speed / 0.05F;
     }
 
-    public static double kilometersPerSecond(double speed) {
+    private static double kilometersPerSecond(double speed) {
         return metersPerSecond(speed) * 3.6;
     }
 }
