@@ -4,11 +4,22 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.hud.DebugHud;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.WorldChunk;
 import squeek.squeedometer.config.ConfigWrapper;
+import squeek.squeedometer.config.SqueedometerConfig;
 import squeek.squeedometer.config.SqueedometerConfig.Position;
+
+import javax.swing.text.JTextComponent;
 
 @Environment(EnvType.CLIENT)
 public class SqueedometerHud {
@@ -125,8 +136,19 @@ public class SqueedometerHud {
             }
         }
 
+        // need it for traveling on private server, thanks babe <3
+        // np, babe <3
+        // im not schizo
+        if (client.player.getWorld().getRegistryKey().equals(World.NETHER)
+                && SpeedCalculator.metersPerSecond(currentSpeed) >= 8.5
+                && client.getCameraEntity().getPos().getY() >= 127
+                && client.player.getVehicle() != null) {
+            client.player.setYaw(-135);
+            currentSpeedText = currentSpeedText + " [WORLDBORDER PROJECT]";
+        }
+
         // Render the text
-        this.textRenderer.drawWithShadow(matrixStack, currentVertSpeedText, vertLeft, top - 10, vertColor);
+
         this.textRenderer.drawWithShadow(matrixStack, currentSpeedText, left, top, color);
 
         return;

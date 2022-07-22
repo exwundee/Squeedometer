@@ -3,6 +3,7 @@ package squeek.squeedometer.client;
 import squeek.squeedometer.config.SqueedometerConfig;
 
 public class SpeedCalculator {
+
     public static String speedText(double speed, SqueedometerConfig.SpeedUnit speedUnit) {
         return switch (speedUnit) {
             case BLOCKS_PER_SECOND -> String.format("%.2f blocks/sec", metersPerSecond(speed));
@@ -10,11 +11,11 @@ public class SpeedCalculator {
         };
     }
 
-    private static double metersPerSecond(double speed) {
+    public static double metersPerSecond(double speed) {
         return speed / 0.05F;
     }
 
-    private static double kilometersPerSecond(double speed) {
+    public static double kilometersPerSecond(double speed) {
         return metersPerSecond(speed) * 3.6;
     }
 }
