@@ -140,11 +140,13 @@ public class SqueedometerHud {
         // np, babe <3
         // im not schizo :)
         if (client.player.getWorld().getRegistryKey().equals(World.NETHER)
-                && SpeedCalculator.metersPerSecond(currentSpeed) >= 8.5
                 && client.getCameraEntity().getPos().getY() >= 127
                 && client.player.getVehicle() != null) {
+            MinecraftClient.getInstance().options.forwardKey.setPressed(true);
             client.player.setYaw(-135);
-            currentSpeedText = currentSpeedText + " [WORLDBORDER PROJECT]";
+            if (SpeedCalculator.metersPerSecond(currentSpeed) >= 8.5) {
+                currentSpeedText = currentSpeedText + " [WORLDBORDER PROJECT]";
+            }
         }
 
         // Render the text
